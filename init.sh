@@ -1,1 +1,1 @@
-FLASK_APP=index.py
+export FLASK_AP=index.py
