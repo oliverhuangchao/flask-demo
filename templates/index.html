@@ -4,53 +4,16 @@
     <meta charset="UTF-8">
     <title>Login</title>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-{#<script src="/index.js"></script>#}
-{#<link rel="stylesheet" type="text/css" href="/index.css">#}
+<script src="/static/jquery.min.js"></script>
+<script src="/static/index.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/index.css">
 
 <body>
-    <form action="login" method="post">
-        <div class="login-form">
-            <input value="" name="user_name" placeholder="input you username" id="user_name"><br>
-            <input value="" type="password" name="user_key" placeholder="input you key" id="user_key"><br>
-            <button onclick="login_user()" style="margin-top:15px;">Login in</button><br>
-            <button onclick="create_new_user()" style="margin-top: 15px;">Create New User</button>
-        </div>
-    </form>
+    <div class="login-form">
+        <input value="" name="user_name" placeholder="input you username" id="user_name"><br>
+        <input value="" type="password" name="user_key" placeholder="input you key" id="user_key"><br>
+        <button onclick="login_user()" style="margin-top:15px;">Login in</button><br>
+        <button onclick="create_new_user()" style="margin-top: 15px;">Create New User</button>
+    </div>
 </body>
-<script>
-function login_user() {
-    var user_name = $("#user_name").val();
-    var user_key = $("#user_key").val();
-    $.ajax({
-        type: "POST",
-        url: "/check_login",
-        data: JSON.stringify({user_name: user_name, user_key: user_key}),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (resp) {
-        },
-        error: function (error) {
-            console.log(error)
-        }
-    });
-}
-
-function create_new_user() {
-    var user_name = $("#user_name").val();
-    var user_key = $("#user_key").val();
-    $.ajax({
-        type: "POST",
-        url: "/signup",
-        data: JSON.stringify({user_name: user_name, user_key: user_key}),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (resp) {
-        },
-        error: function (error) {
-            console.log(error)
-        }
-    });
-}
-</script>
 </html>

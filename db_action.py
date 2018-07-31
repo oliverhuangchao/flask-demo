@@ -1,6 +1,7 @@
 import sqlite3
 from settings import WORKING_DIR, DB_PATH, USER_TABLE
 import os
+ERROR_PREFIX = "[DB_ERROR]"
 
 
 class SingletonType(type):
@@ -19,13 +20,12 @@ class DBActionHandler:
         self.db_path = os.path.join(WORKING_DIR, DB_PATH)
         conn = sqlite3.connect(self.db_path)
         conn.close()
-        self._init_db()
 
-    def _init_db(self):
+    def init_db(self):
         conn = sqlite3.connect(self.db_path)
         c = conn.cursor()
         query = """
-        CREATE TABLE IF NOT EXISTS {} (id VARCHAR PRIMARY KEY, login_name VARCHAR, password VARCHAR);
+        CREATE TABLE IF NOT EXISTS {} (login_name VARCHAR PRIMARY KEY, password VARCHAR);
         """.format(USER_TABLE)
         c.execute(query)
         conn.close()
@@ -38,7 +38,8 @@ class DBActionHandler:
             conn.commit()
             conn.close()
         except Exception as e:
-            print(str(e))
+            print("{}:{}".format(ERROR_PREFIX, str(e)))
+            raise e
 
     def do_get_many(self, query_str):
         """
@@ -46,7 +47,19 @@ class DBActionHandler:
         :param query_str:
         :return:
         """
-        pass
+        try:
+            conn = sqlite3.connect(self.db_path)
+            c = conn.cursor()
+            resp = c.execute(query_str)
+            raw_rt = resp.fetchall()
+            conn.close()
+            if raw_rt:
+                return raw_rt
+            else:
+                return None
+        except Exception as e:
+            print("{}:{}".format(ERROR_PREFIX, str(e)))
+            raise e
 
     def do_get_one(self, query_str):
         """
@@ -54,4 +67,16 @@ class DBActionHandler:
         :param query_str:
         :return:
         """
-        pass
+        try:
+            conn = sqlite3.connect(self.db_path)
+            c = conn.cursor()
+            resp = c.execute(query_str)
+            raw_rt = resp.fetchall()
+            conn.close()
+            if raw_rt:
+                return raw_rt[0]
+            else:
+                return None
+        except Exception as e:
+            print("{}:{}".format(ERROR_PREFIX, str(e)))
+            raise e
