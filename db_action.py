@@ -20,9 +20,8 @@ class DBActionHandler:
         self.db_path = os.path.join(WORKING_DIR, DB_PATH)
         conn = sqlite3.connect(self.db_path)
         conn.close()
-        self._init_db()
 
-    def _init_db(self):
+    def init_db(self):
         conn = sqlite3.connect(self.db_path)
         c = conn.cursor()
         query = """

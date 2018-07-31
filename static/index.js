@@ -8,6 +8,11 @@ function login_user() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (resp) {
+            if(!resp.result) {
+                alert(resp.message);
+            }else{
+                window.location.replace("/dashboard");
+            }
         },
         error: function (error) {
             console.log(error)
@@ -25,6 +30,12 @@ function create_new_user() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (resp) {
+            if(!resp.result) {
+                alert(resp.message)
+            }
+            else{
+                alert("already registered")
+            }
         },
         error: function (error) {
             console.log(error)
