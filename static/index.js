@@ -3,7 +3,7 @@ function login_user() {
     var user_key = $("#user_key").val();
     $.ajax({
         type: "POST",
-        url: "/login",
+        url: "/loginchao",
         data: JSON.stringify({user_name: user_name, user_key: user_key}),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
