@@ -18,6 +18,7 @@ class DBActionHandler:
 
     def __init__(self):
         self.db_path = os.path.join(WORKING_DIR, DB_PATH)
+        print(self.db_path)
         conn = sqlite3.connect(self.db_path)
         conn.close()
 

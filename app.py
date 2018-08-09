@@ -5,9 +5,9 @@ from settings import TEMPLATE_DIR, STATIC_DIR
 app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
 
 
-@app.route('/', methods=['GET'])
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+# @app.route('/', methods=['GET'])
+@app.route('/loginchao', methods=['GET', 'POST'])
+def loginchao():
     try:
         if request.method == 'POST':
             user_name = request.json['user_name']
@@ -25,6 +25,16 @@ def login():
     except Exception as e:
         print(str(e))
         return jsonify({'result': False, 'message': str(e)})
+
+
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template("login/login.html")
+
+
+@app.route('/registration', methods=['GET'])
+def registration():
+    return render_template("registration/registration.html")
 
 
 @app.route('/dashboard', methods=['GET'])
