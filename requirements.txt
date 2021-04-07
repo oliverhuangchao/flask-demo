@@ -2,7 +2,7 @@ adal==0.5.1
 asn1crypto==0.24.0
 astroid==1.6.5
 Authlib==0.7
-bottle==0.12.13
+bottle==0.12.19
 certifi==2018.1.18
 cffi==1.11.5
 chardet==3.0.4
