@@ -24,7 +24,7 @@ mccabe==0.6.1
 oauthlib==2.0.6
 pyasn1==0.4.3
 pycparser==2.18
-PyJWT==1.6.1
+PyJWT==2.4.0
 pylint==1.9.2
 pyOpenSSL==18.0.0
 pyperclip==1.6.0
